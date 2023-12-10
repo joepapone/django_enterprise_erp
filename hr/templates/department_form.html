@@ -1,0 +1,35 @@
+{% extends 'home/base.html' %}
+    {% block content %}
+    <div class="col-5 col-s-5">
+        {% if messages %}
+        <div class="messages">
+            {% for message in messages %}
+            <div class="alert {% if message.tags %}alert-{{ message.tags }}"{% endif %}>
+                <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>{{ message }}
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+        <form action="" method="POST" enctype=multipart/form-data>
+            {{ form.csrf_token }}
+            <div class="form-container">
+                <div class="form-row {% if form.department_name.errors %}error{% endif %}">
+                    <div class="label-col">
+                        <label class="field-label" for="name">{{ form.department_name.label }}</label>
+                    </div>
+                    <div class="input-col">
+                        {{ form.department_name }}
+                        {% for error in form.department_name.errors %}
+                        {% if form.department_name.errors %}<div class="error-message">{{ error }}</div>{% endif %}
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="submit-col">
+                        <input class="field-submit" type="submit" value="Submit">
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    {% endblock %}

@@ -1,0 +1,62 @@
+{% extends 'home/base.html' %}
+    {% block content %}
+    <div class="col-5 col-s-5">
+        {%- for message in get_flashed_messages() %}
+        <div>
+            {%- if "Error" not in message: %}
+            <div class="alert success">
+                <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>{{ message }}
+            </div>
+            {%- endif %}
+            {%- if "Error" in message: %}
+            <div class="alert error">
+                <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>{{ message }}
+            </div>
+            {%- endif %}
+        </div>
+        {%- endfor %}
+        <form action="" method="POST" enctype=multipart/form-data>
+            {{ form.csrf_token }}
+            <div class="form-container">
+                <div class="form-row {% if form.department_id.errors %}error{% endif %}">
+                    <div class="label-col">
+                        <label class="field-label" for="department_id">{{ form.department_id.label }}</label>
+                    </div>
+                    <div class="input-col">
+                        {{ form.department_id() }}
+                        {%- for error in form.department_id.errors %}
+                        {%- if form.department_id.errors %}<div class="error-message">{{ error }}</div>{%- endif %}
+                        {%- endfor %}
+                    </div>
+                </div>
+                <div class="form-row {% if form.job_title.errors %}error{% endif %}">
+                    <div class="label-col">
+                        <label class="field-label" for="title">{{ form.job_title.label }}</label>
+                    </div>
+                    <div class="input-col">
+                        {{ form.job_title }}
+                        {%- for error in form.job_title.errors %}
+                        {%- if form.job_title.errors %}<div class="error-message">{{ error }}</div>{%- endif %}
+                        {%- endfor %}
+                    </div>
+                </div>
+                <div class="form-row {% if form.job_description.errors %}error{% endif %}">
+                    <div class="label-col">
+                        <label class="field-label" for="description">{{ form.job_description.label }}</label>
+                    </div>
+                    <div class="input-col">
+                        {{ form.job_description }}
+                        {%- for error in form.job_description.errors %}
+                        {%- if form.job_description.errors %}<div class="error-message">{{ error }}</div>{%- endif %}
+                        {%- endfor %}
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="submit-col">
+                        <input class="field-submit" type="submit" value="Submit">
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    {% endblock %}

@@ -1,0 +1,92 @@
+from django.shortcuts import render
+from .apps import Menu
+
+HEADER = 'Enterprise ERP'
+ABOUT_TEXT = '''
+Enterprise ERP is a web based ERP system for best performance and reliability. 
+It was designed for ease of use to offer your business all the necessary tools it requires for monitoring and control. 
+'''
+
+# Create your views here.
+def index(request):
+    heading = 'Welcome'
+    message = '''Please hover over the icon on the top right hand corner of the page, and click on the login menu.
+                     Insert your user name and password to access the ERP Enterprise webserver application.
+                     '''
+    return render(request, "index.html", {'header': HEADER, 'heading': heading, 'message': message})
+
+
+def home(request):
+    # Set html page menus
+    menus=[{'link': '/admin/dashboard', 'text': ' ❱ Admin'},
+           {'link': '/hr/dashboard', 'text': ' ❱ Human Resources'}]
+
+    heading = 'Home'
+    message = f''
+
+    return render(request, "home.html", {'header': HEADER, 'menus': menus, 'heading': heading, 'message': message})
+
+
+def about(request):
+    heading = 'About'
+    message = ABOUT_TEXT
+
+    return render(request, "home.html", {'header': HEADER, 'heading': heading, 'message': message})
+
+'''
+@root.route('/')
+def index():
+    heading = 'Welcome'
+    message = 'Please hover over the icon on the top right hand corner of the page, and click on the login menu.
+                     Insert your user name and password to access the ERP Enterprise webserver application.
+                  '
+
+    return render_template('home/index.html', header=HEADER, heading=heading, message=message)
+
+
+# Home page route
+@root.route('/home')
+@login_required
+def home():
+    # Set html page menus
+    menus=[{'link': '/admin/dashboard', 'text': ' ❱ Admin'},
+           {'link': '/hr/dashboard', 'text': ' ❱ Human Resources'}]
+
+    heading = 'Home'
+    message = f""
+    
+    return render_template('home/home.html', header=HEADER, menus=menus, heading=heading, message=message)
+
+
+# About page route
+@root.route('/about')
+def about():
+    heading = 'About'
+    message = ABOUT_TEXT
+
+    return render_template('home/about.html', header=HEADER, heading=heading, message=message)
+
+
+# Page not found error route
+@root.errorhandler(404)
+def page_not_found(error):
+    # Set html page menus
+    menus=[{'link': '/', 'text': ' ❰ Back'}]
+
+    # Set html page heading
+    heading = f'{404} - Page not found!'
+
+    return render_template('home/404.html', header=HEADER, menus=menus, heading=heading, error=error), 404
+
+
+# Internal server error route
+@root.errorhandler(500)
+def internal_server_error(error):
+    # Set html page menus
+    menus=[{'link': '/', 'text': ' ❰ Back'}]
+
+    # Set html page heading
+    heading = f'{500} - Internal server error!'
+    
+    return render_template('home/500.html', header=HEADER, menus=menus, heading=heading, error=error), 500
+'''
