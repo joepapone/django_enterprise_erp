@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.contrib.auth.decorators import login_required
 from .apps import Menu
 
 HEADER = 'Enterprise ERP'
@@ -15,7 +16,7 @@ def index(request):
                      '''
     return render(request, "index.html", {'header': HEADER, 'heading': heading, 'message': message})
 
-
+@login_required
 def home(request):
     # Set html page menus
     menus=[{'link': '/admin/dashboard', 'text': ' ❱ Admin'},
@@ -26,7 +27,7 @@ def home(request):
 
     return render(request, "home.html", {'header': HEADER, 'menus': menus, 'heading': heading, 'message': message})
 
-
+@login_required
 def about(request):
     heading = 'About'
     message = ABOUT_TEXT

@@ -2,8 +2,10 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.views.decorators.http import require_http_methods
-from .models import Department
-from .forms import DepartmentForm
+
+
+from hr.models import Department
+from hr.forms import DepartmentForm
 
 
 # Create your views here.

@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'main',
+    'accounts',
     'hr',
 ]
 
@@ -82,6 +83,13 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
+
+# Redirect to home URL after login (Default redirects to /accounts/profile/)
+LOGIN_REDIRECT_URL = '/home'
+
+# Redirect to home URL after login
+#LOGOUT_REDIRECT_URL = '/'
 
 
 # Password validation
@@ -131,3 +139,7 @@ STATIC_ROOT = BASE_DIR / 'staticfiles'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# For setting up email server
+# https://docs.djangoproject.com/en/4.2/topics/email/
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
