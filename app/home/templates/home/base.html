@@ -1,0 +1,112 @@
+{%load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+        <title>Enterprise ERP</title>
+    </head>
+
+    <body>
+        <header class="header">
+            <a href="#"><img class="logo" src="{% static 'images/logo.png' %}" alt="logo"></a>
+            <h1>My Website</h1>
+
+            <ul class="topnav">
+                <li class="active"><a href="{%url 'home'%}"><i class="bi bi-house-fill"> Home </i></a></li>
+                <li><a href="#">About</a></li>
+                {% if request.user.is_authenticated %}
+                <li class="dropdown">
+                    <a href="#" class="dropbtn">Human Resources</a>
+                    <div class="dropdown-content">
+                        <a href="{% url 'departments' %}">Departments</a>
+                        <a href="{% url 'employees' %}">Employees</a>
+                        <a href="#">Link 3</a>
+                    </div>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropbtn">Dropdown</a>
+                    <div class="dropdown-content">
+                        <a href="#">Link 1</a>
+                        <a href="#">Link 2</a>
+                        <a href="#">Link 3</a>
+                    </div>
+                </li>
+                {% endif %}
+                
+                <li class="right">
+                {% if request.user.is_authenticated %}
+                    <a href="{% url 'profile' %}">Hi {{request.user | title}}</a>
+                    <a href="{% url 'logout' %}?next=/">Logout</a>
+                {% else %}
+                    <a href="{% url 'login' %}">Login</a>
+                    <a href="{% url 'register' %}">Join Now</a>
+                {% endif %}
+                </li>
+            </ul>
+        </header>
+
+        <main class="main">
+            <div class="container">
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="alert alert-{{message.tags}}">
+                        <span class="alert-btn" onclick="this.parentElement.style.display='none';">&times;</span>{{message}}
+                    </div>
+                {% endfor %}
+            {% endif %}
+            
+            {%block content %}
+            {%endblock content%}
+            </div>
+
+            <div class="row">
+                <div class="leftcolumn">
+                <div class="card">
+                    <h2>TITLE HEADING</h2>
+                    <h5>Title description, Dec 7, 2017</h5>
+                    <div class="fakeimg" style="height:200px;">Image</div>
+                    <p>Some text..</p>
+                    <p>Sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
+                </div>
+                <div class="card">
+                    <h2>TITLE HEADING</h2>
+                    <h5>Title description, Sep 2, 2017</h5>
+                    <div class="fakeimg" style="height:200px;">Image</div>
+                    <p>Some text..</p>
+                    <p>Sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
+                </div>
+                </div>
+            
+                <div class="rightcolumn">
+                <div class="card">
+                    <h2>About Me</h2>
+                    <div class="fakeimg" style="height:100px;">Image</div>
+                    <p>Some text about me in culpa qui officia deserunt mollit anim..</p>
+                </div>
+                <div class="card">
+                    <h3>Popular Post</h3>
+                    <div class="fakeimg"><p>Image</p></div>
+                    <div class="fakeimg"><p>Image</p></div>
+                    <div class="fakeimg"><p>Image</p></div>
+                </div>
+                <div class="card">
+                    <h3>Follow Me</h3>
+                    <p>Some text..</p>
+                </div>
+                </div>
+            </div>
+        </main>
+        
+        <footer class="footer">
+            <div class="container">
+                <p>Enterprise ERP System</p>
+                <p>&copy; Copyright {% now "Y" %} by José Ferreira</p>
+            </div>
+        </footer>
+
+    </body>
+
+</html>

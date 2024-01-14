@@ -1,0 +1,16 @@
+{%extends 'home/base.html'%}
+
+{%block content%}
+<div class="center">
+	<form method="post" class="card">
+		{% csrf_token %}
+		<h2>Delete department</h2>
+		<p>Are you sure that you want to delete "{{department.name}}"?</p>
+		<p class="form-buttons">
+			<input type="submit" class="btn btn-delete" value="Delete">
+			<a href="{% url 'departments'%}" class="btn btn-outline">Cancel</a>
+		</p>
+	</form>
+</div>
+
+{%endblock content%}

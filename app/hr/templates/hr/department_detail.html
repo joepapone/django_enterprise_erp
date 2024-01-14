@@ -1,0 +1,15 @@
+{%extends 'home/base.html'%}
+
+{%block content%}
+
+ <article class="list">
+	<header>
+		<h2>{{ department.name }}</h2>
+		<span class="badge {% if department.completed %}badge-completed{% else %}badge-pending{%endif%}">
+			{% if department.completed %} Completed {%else%} Pending {%endif%}
+		</span>
+	</header>
+	<p>{{department.description}}</p>
+</article>
+
+{%endblock content%}
