@@ -1,0 +1,25 @@
+{%extends 'home/base.html'%}
+
+{%block content%}
+
+<div class="center">
+	<form method="post" novalidate class="form-card">
+	 	{%csrf_token %}
+	 	
+	 	<h2>{% if product %} Update {%else %} Create {%endif%} product</h2>
+		{% for field in form %}
+			<label class="label">{{ field.label_tag }}</label>
+			{{ field }}
+			{% if field.errors %}
+				<small class="error">{{ field.errors|striptags  }}</small> 
+			{% endif %}
+		{% endfor %}
+		<div class="form-buttons">
+			<input type="submit" value="Save" class="btn btn-primary"/>
+			<a href="{%url 'products'%}" class="btn btn-outline">Cancel</a>
+		</div>
+	</form>
+</div>
+
+{%endblock content%}
+

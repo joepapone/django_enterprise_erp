@@ -1,0 +1,24 @@
+{%extends 'home/base.html'%}
+
+{%block content%}
+
+<div class="center">
+	<h2>Products</h2>
+	<hr>
+	<div  class="list-controls">
+		<a href="{% url 'product-create' %}"><i class="bi bi-plus-circle"></i> Create</a>
+	</div>
+	{% if products %}
+	<ul class="list">
+		{% for product in products %}
+			<li>{{ product.name }}
+				 <div  class="list-controls">
+				 	<a href="{%url 'product-delete' product.id %}"><i class="bi bi-trash"></i> </a>
+					<a href="{%url 'product-update' product.id %}"><i class="bi bi-pencil-square"></i></a>
+		         </div>
+		    </li>
+		{% endfor %}
+	{% endif %}
+	</ul>
+</div>
+{%endblock content%}

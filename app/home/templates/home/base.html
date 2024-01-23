@@ -23,15 +23,22 @@
                     <div class="dropdown-content">
                         <a href="{% url 'departments' %}">Departments</a>
                         <a href="{% url 'employees' %}">Employees</a>
+                    </div>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropbtn">Operations</a>
+                    <div class="dropdown-content">
+                        <a href="{% url 'products' %}">Products</a>
+                        <a href="#">Link 2</a>
                         <a href="#">Link 3</a>
                     </div>
                 </li>
                 <li class="dropdown">
-                    <a href="#" class="dropbtn">Dropdown</a>
+                    <a href="#" class="dropbtn">Financials</a>
                     <div class="dropdown-content">
-                        <a href="#">Link 1</a>
-                        <a href="#">Link 2</a>
-                        <a href="#">Link 3</a>
+                        <a href="{% url 'financials' 1 %}">Income Statement</a>
+                        <a href="{% url 'financials' 2 %}">Balance Sheet</a>
+                        <a href="{% url 'financials' 3 %}">Cash Flow Statement</a>
                     </div>
                 </li>
                 {% endif %}
