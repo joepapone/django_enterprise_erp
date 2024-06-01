@@ -2,15 +2,32 @@
 
 {%block content%}
 
-<div class="center">
-	<h2>{{ title }}</h2>
+<div class="center-panel">
 	<hr>
-	{% if financials %}
-	<ul class="list">
-		{% for financial in financials %}
-		<li>{{ financial.sequence|stringformat:"03d" }}. {{ financial.financial_statement_line.name }}</li>
-		{% endfor %}
-	{% endif %}
+	<ul class="tabs">
+		<li class="tab {% if id == 1 %}selected{% endif %}"><a href="{% url 'financials' 1 %}">Income Statement</a></li>
+		<li class="tab {% if id == 2 %}selected{% endif %}"><a href="{% url 'financials' 2 %}">Balance Sheet</a></li>
+		<li class="tab {% if id == 3 %}selected{% endif %}"><a href="{% url 'financials' 3 %}">Cash Flow Statement</a></li>
 	</ul>
+	{% if financials %}
+	<table id="financials">
+		<tr>
+			<th class="text-center" style="width: 5%;" ></th>
+			<th class="text-left" style="width: 50%;" > </th>
+			<th class="text-center banded" style="width: 15%;" >2022</th>
+			<th class="text-center" style="width: 15%;" >2023</th>
+			<th class="text-center banded" style="width: 15%;" >2024</th>
+		</tr>
+		{% for financial in financials %}
+		<tr class="">
+			<td class="text-center">{{ financial.sequence|stringformat:"03d" }}</td>
+			<td class="text-left">{{ financial.financial_statement_line.name }}</td>
+			<td class="background"></td>
+			<td></td>
+			<td class="background"></td>
+		</tr>
+		{% endfor %}
+	</table>
+	{% endif %}
 </div>
 {%endblock content%}

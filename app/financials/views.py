@@ -15,6 +15,7 @@ class Financials(LoginRequiredMixin, ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['title'] = f'{self.financial_statement.pk}. {self.financial_statement.name}'
+        context['id'] = self.financial_statement.pk
         return context
     
     def get_queryset(self):

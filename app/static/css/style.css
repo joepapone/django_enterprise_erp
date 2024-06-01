@@ -422,8 +422,15 @@ textarea:focus {
 
 
 /* --- Utilities --- */
+.text-left {
+  text-align: left;
+}
 .text-center {
   text-align: center;
+}
+
+.text-right {
+  text-align: right;
 }
 
 .error {
@@ -434,11 +441,10 @@ textarea:focus {
   width: 100%;
 }
 
-.center {
+.center-panel {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
   min-height: 70vh;
 }
 
@@ -477,7 +483,6 @@ textarea:focus {
 }
 
 /* --- list --- */
-
 .list {
   list-style: none;
   width: 100%;
@@ -513,8 +518,68 @@ table {
   width: 100%;
 }
 
+tr.banded:nth-child(even){
+  background-color: #bbc5ce;
+}
+
+tr.hover:hover {
+  background-color: #415769;
+  color: white;
+  z-index: 10;
+}
+
+td.background:nth-child(2n+3) {
+  background-color: #a7afb6;
+  z-index: -10;
+}
+
 th, td {
   padding: 8px;
   text-align: left;
-  border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid #494949;
+}
+
+/* --- tabs --- */
+.tabs {
+  width: 100%;
+  height: 48px;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: visible;
+  border-bottom: 1px solid rgb(65, 65, 65);
+}
+
+.tab {
+  float: left;
+  margin-right: 3px;
+  border: 1px solid rgb(65, 65, 65);
+  border-top-left-radius: var(--border-radius);
+  border-top-right-radius: var(--border-radius);
+}
+
+.tab a.active {
+	background-color: rgb(30, 65, 95);
+}
+
+.tab a {
+  display: inline-block;
+  color: rgb(65, 65, 65);
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+.tab a:hover {
+  background: rgb(110, 120, 130);
+  color: white;
+}
+
+.tab.selected {
+  border-bottom: 1px solid rgb(65, 65, 65);
+  background: rgb(110, 120, 130);
+}
+
+.tab.selected a {
+  color: white;
 }
